@@ -1,0 +1,56 @@
+
+use javaee;
+
+drop table if exists toyorderitem;
+drop table if exists toyorder;
+drop table if exists toykinds;
+drop table if exists toyuser;
+drop table if exists toyadmin;
+
+
+create table IF NOT EXISTS toyadmin(
+    taid int primary key auto_increment,
+    taname varchar(50),
+    tapwd  varchar(50)
+)default character set = 'utf8';
+
+create table IF NOT EXISTS toyuser(
+	userid int  primary key auto_increment,
+	username varchar(50),
+	pwd varchar(50), 
+	email varchar(500)
+)default character set = 'utf8';
+
+
+create table  IF NOT EXISTS toykinds(
+	tid int  primary key auto_increment,
+	tname varchar(50) ,  
+	total numeric(8,2),
+	earnest numeric(8,2),
+	detail varchar(2000),
+	tphoto varchar(1000)
+)default character set = 'utf8';
+
+create table IF NOT EXISTS toyorder(
+	toid int  primary key auto_increment,
+	userid int ,
+	address varchar(500),
+	tel varchar( 100),
+	ordertime date,
+	deliverytime date,
+	ps varchar( 2000),
+	status int
+)default character set = 'utf8';
+	     
+
+create table IF NOT EXISTS toyorderitem(
+	toiid int  primary key auto_increment,
+	toid  int,
+	tid   int,
+	dealprice numeric(8,2),
+	num     int
+)default character set = 'utf8';
+           
+       
+commit;
+

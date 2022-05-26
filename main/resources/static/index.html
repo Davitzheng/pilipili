@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试</title>
+    <link rel="stylesheet" href="css/text.css" />
+    <style>
+        .el-card.is-always-shadow {
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        #bg {
+            position: absolute;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.6);
+        }
+        .head{
+            width:100%;
+            background:rgba(45,154,152,0.8);
+            /* 固定布局 */
+            /*position:fixed;*/
+            /* 布局之后，都需要定义位置 */
+            top:0px;
+            /*更改文字相关的样式*/
+            text-align:center;
+            line-height:60px;
+            color:#fff;
+            font-size:22px;
+            font-weight:bold;
+        }
+        .head .right{
+            /* 绝对定位 */
+            position:absolute;
+            top:0px;
+            right:150px;
+        }
+        /* 伪类，当鼠标一上去的时候，触发样式 */
+        .head .showlogin:hover{
+            color: gold;
+            cursor:pointer;		/* 改变鼠标的手势 */
+        }
+        .head .showregister:hover{
+            color: deeppink;
+            cursor:pointer;
+        }
+
+
+        .login{
+            width:32%;
+            position:fixed;
+            top:20%;
+            left:35%;
+            border-radius:15px;
+            text-align:center;
+            background:rgba(0,0,0,0.8);
+        }
+        #unshowinfo{
+            /* 右浮动，居右显示 */
+            float:right;
+            display:block;
+            margin:10px;
+            color:#fff;
+            width:25px;
+            height:25px;
+            line-height:25px;
+            border:1px #fff solid;
+            border-radius:50%;		/* 50%的圆角，就是一个圆 */
+        }
+        #unshowinfo:hover{
+            color:red;
+            cursor:pointer;
+        }
+        .login form{
+            margin-top:15px;
+            margin-bottom:0px;
+        }
+        .login form tr{
+            display:block;
+            width:100%;
+            color:#ccc;
+            margin:20px 0 0 30px;
+            border-bottom:1px solid #666;
+        }
+        .login .labname{
+            width:80px;
+        }
+        .login form tr input{
+            width:200px;
+            height:30px;
+            margin:12px;
+            padding:5px;
+            border:0;			/* 去掉边框和背景颜色 */
+            background:none;
+            color:#fff;
+        }
+        .login form tr #yzm{
+            width:130px;
+        }
+        .login .btn{
+            width:100%;
+            color:#fff;
+            font-size:30px;
+            height:60px;
+            line-height:60px;
+            text-align:center;
+            background:#3EA751;
+            border:0;
+            padding:0px;
+            border-radius:0 0 15px 15px;
+            cursor:pointer;
+        }
+
+        .shoppingcar{
+            width:250px;
+            height:50px;
+            position:fixed;
+            bottom:0px;
+            right:966px;
+        }
+
+        .carbag{
+            position:fixed;   /* 固定位置，所以脱离文档流*/
+            right:1016px;
+            bottom:-300px;
+            width:250px;
+            background:#fff;
+            border-radius:10px;
+            transition:all 0.8s linear;
+            margin-bottom: 10px;
+        }
+        .carbag p{
+            font-size:16px;
+            padding-left:20px;
+            line-height:40px;
+            border-bottom:1px solid #0089DC;
+            border-top:1px solid #0089DC;
+        }
+        .carbag p span{
+            color:#4E89E1;
+            margin-left:10px;
+            cursor:pointer;
+        }
+        .carbag table{
+            display:block;
+            width:100%;
+            height:260px;
+            text-align:center;
+            color:#666;
+            border:none;
+        }
+        .bagcontent tr{
+            width:350px;
+            height:40px;
+            margin:5px 10px 10px 10px;
+            border-bottom:1px solid #0089DC;
+        }
+        .bagcontent tr .bagtname{
+            width:40%;
+            height:40px;
+            line-height:40px;
+            padding-left:20px;
+        }
+        .bagcontent tr .bagnum{
+            width:40%;
+            height:40px;
+            line-height:40px;
+        }
+        .bagcontent tr .bagnum button{
+            width:40px;
+            height:25px;
+        }
+        .bagcontent tr .bagnum span{
+            margin:0px 10px;
+        }
+        .bagcontent tr .bagprice{
+            width:20%;
+            padding-right:20px;
+        }
+
+        .carprice{
+            width:50%;
+            height:100%;
+            background:url(../image/car.png) no-repeat 10px center;
+            background-color:black;
+            color:white;
+            font-size:15px;
+            position:absolute;
+            bottom:0;
+            right:175px;
+            text-align:center;
+            line-height:50px;
+            cursor:pointer;
+        }
+        .carinfo{
+            width:50%;
+            height:100%;
+            background:white;
+            text-align:center;
+            line-height:50px;
+            position:absolute;
+            right:50px;
+            bottom:0;
+        }
+
+        .isHide {
+            bottom: -300px;
+        }
+
+        .isShow {
+            bottom: 40px;
+        }
+        .el-input__suffix {
+            top: -20px;
+            right: -20px;
+        }
+        .el-input__prefix {
+            left: -10px;
+            top: -10px;
+        }
+        .el-input{
+            margin-left: -8px;
+            width: 96%;
+        }
+        .el-textarea__inner{
+            margin: -15px;
+        }
+        .el-button.is-round{
+            margin: 15px;
+        }
+        .register{
+            width:25%;
+            position:fixed;
+            top:20%;
+            left:35%;
+            border-radius:15px;
+            text-align:center;
+            background:rgba(255,255,255,0.8);
+            padding-top: 15px;
+            padding-right: 40px;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <div id="bg" style="top: 0px;left: 0px;">
+        <div class="common-layout">
+            <el-container>
+                <el-header>
+                    <div class="head">
+                        pilipili手办订购网
+                        <div class="right">
+                            <span class="showlogin" id="showlogin" @click="loginflag=true" v-if="!isLogin">登录</span>
+                            <span class="showregister" id="register" @click="registerflag=true" v-if="!isLogin">注册</span>
+                            <span id="exitspan" v-if="isLogin">
+										欢迎您:{{username}}&nbsp&nbsp&nbsp<a href="javascript:void" @click="logout()">退出</a>
+									</span>
+                        </div>
+                    </div>
+                </el-header>
+                <el-main>
+                    <div class="showall">
+                        <el-row>
+                            <el-col :span="8" v-for="(item, index) in kinds">
+                                <el-card :body-style="{ padding: '0px'}">
+                                    <img :src=`image/${item.tphoto}` class="image">
+                                    <h3 style="color: #4E89E1">{{item.tname}}</h3>
+                                    <div class="price" style="padding: 14px;">
+                                        <span style="color: #4E89E1">{{item.detail}}</span>
+                                        <div class="bottom">
+                                            <p class="total">总价：￥{{item.total}}</p>
+                                            <p class="earnest">定金：￥{{item.earnest}}</p>
+                                            <el-button type="text" class="button" @click="addCart(   item.tid, 1 )">加入购物车</el-button>
+                                        </div>
+                                    </div>
+                                </el-card>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </el-main>
+                <el-footer style="width: 1400px;padding:0 360px">
+                    Copyright © 2016 Xiaomengsheng Incorporated Company. All rights reserved.
+                    <br />
+                    <div style="margin: 0 auto; width: 300px">买手办，就上pilipili手办订购网!</div>
+                </el-footer>
+            </el-container>
+            <!--登录界面-->
+            <div class="login" id="login" v-if="loginflag">
+                <form name="myform">
+                    <table>
+                        <tr>
+                            <td class="labname">
+                                <label for="username">用户名：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="username" placeholder="请输入用户名"
+                                       id="username" v-model="username" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labname">
+                                <label for="pwd">密码：</label>
+                            </td>
+                            <td>
+                                <input type="password" name="pwd" placeholder="请输入密码"
+                                       id="pwd" v-model="pwd" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labname">
+                                <label for="yzm">验证码：</label>
+                            </td>
+                            <td>
+                                <input type="text" name="yzm" placeholder="请输入验证码"
+                                       id="yzm" v-model="valcode" />
+                            </td>
+                            <td>
+                                <img src="varifyCode.action" onclick="this.src='varifyCode.action?'+Math.random()"
+                                     id="yzm_img" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+<!--                <input type="button" value="login" class="btn" id="btn" @click="login()" />-->
+                <el-button type="primary" round @click="login()">登录</el-button>
+                <el-button type="danger" round @click="loginflag=false">取消</el-button>
+            </div>
+            <!--注册界面-->
+            <div class="register" id="registerdiv" v-if="registerflag">
+                <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="用户名">
+                        <el-input v-model="ruleForm.name" />
+                    </el-form-item>
+                    <el-form-item label="密码" prop="pass">
+                        <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="确认密码" prop="checkPass">
+                        <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="电子邮箱" prop="email">
+                        <el-input v-model="ruleForm.email"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="register" style="padding: 12px 10px;">提交</el-button>
+                        <el-button @click="resetForm('ruleForm')" style="padding: 12px 10px;">重置</el-button>
+                        <el-button type="danger" @click="registerflag=false" style="padding: 12px 10px;">关闭</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <!--商品详情-->
+            <div class="login" id="myinfo" v-if="orderflag">
+                <span id="unshowinfo" @click="showOrder(false)">X</span>
+                <el-form :model="orderInfo" ref="orderInfo" label-width="80px" class="demo-ruleForm">
+                    <el-form-item label="送货地址" style="margin-top: 45px">
+                        <el-input v-model="orderInfo.address" placeholder="请输入送货地址"></el-input>
+                    </el-form-item>
+                    <el-form-item
+                            label="联系电话"
+                            prop="tel"
+                            :rules="[
+      { required: true, message: '联系电话不能为空'},
+      { type: 'number', message: '联系电话必须为数字值'}
+    ]"
+                    >
+                        <el-input type="tel" v-model.number="orderInfo.tel" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="送货时间">
+                        <el-col :span="11">
+                            <el-date-picker type="date" placeholder="选择日期" v-model="orderInfo.deliverytime" style="width: 100%;"></el-date-picker>
+                        </el-col>
+                    </el-form-item>
+                    <el-form-item label="备注:">
+                        <el-input type="textarea" v-model="orderInfo.ps" style=" margin-left: 10px;" ></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" @click="dopay()" style="margin-left: -60px;">提交</el-button>
+                    </el-form-item>
+                </el-form>
+                <form id="exportForm" action="create" method="post" style="display: none">
+                    订单编号:<input type="text" id="id" name="id" style="display:none"><br>
+                    订单金额:<input type="text" id="price" name="price" style="display:none"><br>
+                    订单标题:<input type="text" id="title" name="title" style="display:none"><br>
+                </form>
+<!--                <input type="button" value="提交" class="btn" id="submit" @click="confirmOrder()">-->
+            </div>
+
+            <el-backtop :right="100" :bottom="100" />
+        </div>
+    </div>
+    <div class="shoppingcar">
+        <div class="carbag" id="carbag" :class="{isShow:isHide==false, isHide:isHide==true}" style="overflow-y:auto">
+            <p>购物车<span id="del" @click="clearAll()">[清空]</span></p>
+            <table id="bagcontent" cellpadding="0" cellspacing="0">
+                <tr v-for="(value, key, index) in cartkinds">
+                    <td class="bagtname">{{ value.toykinds.tname}}</td>
+                    <td class="bagprice">{{ value.toykinds.earnest }}¥</td>
+                    <td class="bagnum">
+                        <button @click="addCart(   value.toykinds.tid,  -1 )">-</button>
+                        {{value.num}}
+                        <button @click="addCart( value.toykinds.tid, 1)">+</button>
+                    </td>
+                    <td> {{ value.smallCount}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="carprice" @click="showCart()">{{cartprice|showPrice}}</div>
+        <div class="carinfo" v-if="cartprice<=0">购物车是空的</div>
+        <div class="carinfo" v-else @click="showOrder(true)">下单</div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/axios.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+<script>
+    var regEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+    var checkEmail = (rule, value, callback) => {
+        if (!value) {
+            return callback(new Error('电子邮箱不能为空'));
+        }else{
+            if(!regEmail.test(value)){
+                return callback(new Error('电子邮箱格式不正确'));
+            }
+            callback();
+        }
+
+
+    };
+    var validatePass = (rule, value, callback) => {
+        if (value === '') {
+            callback(new Error('请输入密码'));
+        } else {
+            if (app.ruleForm.checkPass !== '') {
+                app.$refs.ruleForm.validateField('checkPass');
+            }
+            callback();
+        }
+    };
+    var validatePass2 = (rule, value, callback) => {
+        if (value === '') {
+            callback(new Error('请再次输入密码'));
+        } else if (value !== app.ruleForm.pass) {
+            callback(new Error('两次输入密码不一致!'));
+        } else {
+            callback();
+        }
+    };
+    var app = new Vue({
+        el: '#app',
+        data: {
+            loginflag: false,
+            orderflag: false,
+            registerflag:false,
+
+            kinds: [],
+            username: '',      //记录登录用户的名字
+            pwd: '',
+            valcode: '',//验证码
+            isLogin: false,
+
+            cartkinds: [],
+            cartprice: 0.0,    //总价
+
+            isHide: true,    //控制 购物车详情div的显示与隐藏
+
+            orderInfo: {
+                address: '',
+                tel: '',
+                deliverytime: '',
+                ps: ''
+            },
+            ruleForm: {
+                name:'',
+                pass: '',
+                checkPass: '',
+                email: ''
+            },
+            rules: {
+                pass: [
+                    { validator: validatePass, trigger: 'blur' }
+                ],
+                checkPass: [
+                    { validator: validatePass2, trigger: 'blur' }
+                ],
+                email: [
+                    { validator: checkEmail, trigger: 'blur' }
+                ]
+            },
+        },
+        methods: {
+            findAllKinds() {
+                return axios.get("findAllKinds");
+            },
+            logout: function () {
+                let params = new URLSearchParams();
+                params.append("op", "logout");
+
+                axios.post("logout", params).then(yc => {
+                    this.username = '';
+                    this.isLogin = false;
+                });
+            },
+            confirmOrder() {
+                let params = new URLSearchParams();
+                params.append("address", this.orderInfo.address);
+                params.append("tel", this.orderInfo.tel);
+                params.append("ps", this.orderInfo.ps);
+                params.append("deliverytime", this.orderInfo.deliverytime);
+                axios.post("confirmOrder", params).then(yc => {
+                    if (yc.data.code == 1) {
+                        // alert("下订成功");
+                        this.orderflag = false;
+                        this.clearAll();  //清空购物车
+                        this.orderInfo.address = '';
+                        this.orderflag.tel = '';
+                        this.orderInfo.deliverytime = '';
+                        this.orderInfo.ps = '';
+                    } else {
+                        alert("下单失败," + yc.data.msg);
+                    }
+                });
+            },
+            showOrder(value) {
+                if (this.cartkinds == null || this.cartkinds == undefined) {
+                    return;
+                }
+                this.orderflag = value;
+            },
+            clearAll() {
+                axios.get("clearAll").then(yc => {
+                    if (yc.data.code == 1) {
+                        this.cartkinds = {};
+                        this.cartprice = 0.0;
+                    }
+                });
+            },
+            checkLogin() {
+                return axios.get("checkLogin");
+            },
+            logout: function () {
+                let params = new URLSearchParams();
+                params.append("op", "logout");
+
+                axios.post("logout", params).then(yc => {
+                    this.username = '';
+                    this.isLogin = false;
+                });
+            },
+            login: function () {
+                let params = new URLSearchParams();
+                params.append("username", this.username);
+                params.append("pwd", this.pwd);
+
+                params.append("valcode", this.valcode);
+                axios.post("login", params).then(yc => {
+                    if (yc.data.code == 0) {
+                        alert("登录失败,原因:" + yc.data.msg);
+                        return;
+                    }
+                    this.username = yc.data.data.username;
+                    this.isLogin = true;
+                    this.loginflag = false;
+                });
+            },
+            addCart(tid, num) {
+                //1. 判断用户是否登录
+                if (this.username == null || this.username == '') {
+                    alert('请先登录后下单');
+                    return;
+                }
+                //2. 发请求
+                let params = new URLSearchParams();
+                params.append("tid", tid);
+                params.append("num", num);
+                axios.post("order", params).then(yc => {
+                    if (yc.data.code == -1) {
+                        alert("请先登录");
+                        return;
+                    }
+                    if (yc.data.code == 0) {
+                        alert('添加购物车失败,详情如下:' + yc.data.msg);
+                        return;
+                    }
+                    if (yc.data.code == 1) {
+                        this.showCartInfo(yc.data.data);   //显示购物车
+                    }
+                });
+            },
+            showCartInfo(cart) {
+                this.cartkinds = cart;
+                //计算总价
+                this.cartprice = 0.0;
+                for (key in this.cartkinds) {
+                    let cartitem = this.cartkinds[key];
+                    this.cartprice += cartitem.smallCount;
+                }
+            },
+            showCart() {   //显示购物车的层
+                this.isHide = !this.isHide;
+            },
+            showCartInit() {
+                return axios.get("getCartInfo");
+            },
+            submitForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        alert('submit!');
+                    } else {
+                        console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.ruleForm.name='';
+                this.$refs[formName].resetFields();
+            },
+            register:function(){
+                let params = new URLSearchParams();
+                params.append("username", this.ruleForm.name);
+                params.append("pwd", this.ruleForm.checkPass);
+
+                params.append("email", this.ruleForm.email);
+                axios.post("register", params).then(yc => {
+                    if (yc.data.code == 0) {
+                        alert("注册失败,原因:" + yc.data.msg);
+                        return;
+                    }
+                    alert("注册成功!");
+                    this.registerflag = false;
+                    this.ruleForm.name='';
+                    this.ruleForm.email='';
+                    this.ruleForm.checkPass='';
+                    this.ruleForm.pass='';
+                });
+            },
+           pay:function() {
+               $("#id").val((Math.floor(Math.random()*1000000000000)+1));
+               $("#price").val(this.cartprice);
+               $("#title").val("货到付尾款");
+               document.getElementById("exportForm").submit();
+               return Promise.resolve();
+            },
+
+            dopay:function () {
+                this.pay().then(()=>{
+                    this.confirmOrder();
+                });
+            }
+
+
+        },
+        filters: {
+            showPrice(price) {
+                //可以写入更复杂的逻辑，比如根据 时区来选择不同的货币符号
+                return "￥" + price.toFixed(2);
+            }
+        },
+        mounted: function () {
+            axios.all([this.findAllKinds(), this.checkLogin(), this.showCartInit()]).then(
+                axios.spread((d1, d2, d3) => {
+                    if (d1.data.code == 1) {
+                        this.$data.kinds = d1.data.data;
+                    } else {
+                        this.$data.kinds = [];
+                    }
+
+                    if (d2.data.code == 0) {
+                        this.isLogin = false;
+                        this.username = '';
+                    } else {
+                        this.username = d2.data.data.username;
+                        this.isLogin = true;
+                    }
+
+                    if (d3.data.code == 1) {
+                        this.cartkinds = d3.data.data;
+                        //计算总价
+                        this.cartprice = 0.0;
+                        // this.cartfoods.forEach(   (item,index)=>{
+                        // 	 this.cartprice+=   item.smallCount;
+                        // });
+                        for (key in this.cartkinds) {
+                            let cartitem = this.cartkinds[key];
+                            this.cartprice += cartitem.smallCount;
+                        }
+                    }
+                }));
+        }
+    })
+</script>
+</body>
+</html>

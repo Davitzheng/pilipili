@@ -1,0 +1,33 @@
+
+insert into toyuser( username, pwd,email) values( 'a', '0cc175b9c0f1b6a831c399e269772661','a@163.com');
+insert into toyuser( username, pwd,email) values( 'b', '0cc175b9c0f1b6a831c399e269772661','b@163.com');
+
+
+insert into toykinds(tname,total,earnest,detail, tphoto)  values('帝骑',496.0,248.0,'假面骑士帝骑','10001.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)  values('空我-泰坦形态',475.0,200.0,'假面骑士空我','10002.jpg');
+insert into toykinds( tname,total,earnest,detail, tphoto)  values('02',195.0,95.0,'国家队','10003.jpg');
+insert into toykinds( tname,total,earnest,detail, tphoto)  values('初音未来',999.0,500.0,'韶华','10004.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)  values('赛罗奥特曼',498.0,200.0,'机动奥特曼','10005.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)   values('芙兰朵露·斯卡雷特',448.0,198.0,'东方智灵奇传','10006.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)  values('春日野穹',989.0,488.0,'缘之( )','10007.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)   values('00强化高达',650.0,300.0,'机动战士高达00','10008.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)  values('特利迦奥特曼',288.0,148.0,'新生代迪迦','10009.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)   values('初音未来2022春节款',1759.0,300.0,'初音就是歌姬吧','10010.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)   values('2233',1238.0,688.0,'故宫宫苑','10011.jpg');
+insert into toykinds(tname,total,earnest,detail, tphoto)  values('2233不问天',2500.0,1250.0,'BILIBILI干...','10012.jpg');
+
+
+
+
+insert into toyorder(userid,address,tel,ordertime,deliverytime,ps,status) 
+values( 1,'湖南省衡阳市','13878789999',now(),now(),'送货上门',0);
+
+insert into toyorderitem(toid,tid,dealprice,num)
+values( 1,1,248,1);
+
+insert into toyorderitem(toid,tid,dealprice,num)
+values( 1,2,248,1);
+
+commit; 
+
+select * from toyuser;

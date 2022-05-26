@@ -1,0 +1,74 @@
+server:
+  port: 8800
+  servlet:
+    session.timeout: 60000
+    contextpath: /
+
+logging:
+  level:
+    root: error
+    com:
+      pilipili: error
+    org:
+      springframework: error
+#  file:
+#    path: D:\\yc\\
+
+spring:
+  thymeleaf:
+    cache: false
+    suffix: .html
+    prefix: classpath:/static/
+  datasource:
+    url: jdbc:mysql://47.93.120.149:3306/javaee?serverTimezone=UTC
+    username: root
+    password: a
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#  druid:
+    #初始化大小
+    initialSize: 5
+    #最小值
+    minIdle: 5
+    #最大值
+    maxActive: 20
+    #最大等待时间，配置获取连接等待超时，时间单位都是毫秒ms
+    maxWait: 60000
+    #配置间隔多久才进行一次检测，检测需要关闭的空闲连接
+    timeBetweenEvictionRunsMillis: 60000
+    #配置一个连接在池中最小生存的时间
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，
+    #'wall'用于防火墙，SpringBoot中没有log4j，我改成了log4j2
+    filters: stat,wall,log4j2
+    #最大PSCache连接
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
+
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启SQL语句打印
+
+debug:
+  false
+
+alipay:
+  url: https://openapi.alipaydev.com/gateway.do
+  appid: 2021000120601102
+  privateKey: MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCJHlmxavHxAJnSx53RtEC2K3/jDQovcvHYHmxWqAfyPdjSAxDkWNMatYMKizBc6BSjH767v9TG91J6bYDYIsdQHURh1K9b4bYgswALr6q3w8qwg45a67jh02zAZ2sy9dAUCuCsAlFai6j6aQQw0SZkuEXoYGndADwZFPbkEuHnHM8Plg1QxRfGrq/sJKMCP81dA3TPc8aMgZPCK/syU41lFNqBjYgB5pQFsbqZ3q9XebOCzbwfDZTY0vkWSnfg47b0KyNi0Zsbo9HqZcwwcF1FlPDK/kdX2Vg/D6RCRWtP8ldpUdoGGA+cMcVeX4EU6JOUAWBkkWSHiiGCbDE+N1c/AgMBAAECggEBAIYPSWw//lo91ycQiYl87YPuVbPcjOfFPxSo8g1rbZF2zGTQIJTRD1zeuEb3vQoo0fyGzglsTZFWP6p5I26t2ibG5pOryONRc6rWt6W1U3klkScxCF52dyU7e+lFc7a4RH9D/1PNVFLtlwF06Wb9Jcd1rsu6b+ZmE1wGdjiZCYrV28SnIXH4Mg8BKKSqPn0uKhibPvXacIHnnNSMZSeWJH2BTfkkNfhA4nZPX8BhGwNtpKJTYIFDY0estqZXKdKHXv/AU6075pVxz3FLFBsrQaHhsV1n/scSYywvjyWsq+MrH1TTMqSQ4XArmWwjdKQXwtYwRREEhjCaZlqnNdntQdkCgYEA03TOHDM/nE8yxmF7Z1YGdiEAFShMFWDeCYKHdm9PCah7HEwDi3Dakj+3pKKRsRx58KRfnHQxWsRceODIjz79aZiJzNn3mNZWT/FxNZ9D/tZhhfztn2FT7Za7xp6dgkk2f8O6RARZyS/KwG7koQYNFYNnz3iXCMNOJAlvEZ4X5ZMCgYEApgC86hVJ2yZZqWzsozKesFrbDPYiBXJCdHIM+S94J59AdCd1cjsYoRgHhptknadMKtvv4mJ6Ple6ZFdpl7JNuhP6FZWeSqT/Pm5kR5g6Q/DdFNZYjhvnmcCGObXgEfiQ+oWt7g57dBDVZUN9cfHjxWGoDVa+E4bU+Zrc4Rop0yUCgYB3GomllLA1qN5eozXRBMFq9DeJs0L3n7IxBRar/RI1zHJbg+1TM2PJkJ4t22vYqMN+afd4tnG+QHAdne8Z0E8IlWS4v+UYb1H6gXJU07qG5dXUlJx7c2TEpGxr+ZeadQZ/fI2EFjdEfOjk7xFUKYZhIbztPW1FAE0ZOz8WW0f2hQKBgAgMvRx0z9IKuApZN9hqGfvfTAQC4390HPjclvh2btMtC8kWKMHTT8xwB91lJ6nldPIXHDjUIa1oP6eh/YLXqKE/Wr81NCnWenIilEZMgXbN9UqPYlfxzndMOLYPtb/pV85uMRL8LMxiDJcOgMTHwA3QQH/1Ft6HiUhZVCCuThzpAoGBALSXb0qd8Kh6oa+o8zSq0FA2wRqRfRANMewLgubrv/OMz36eq6KNhGlMjSBrmPzJJW3LULrnM56aw6QzrE+qPcIOeMCmJJ31+xfDkKHHQXrTZsswkpgOenisr/5CB2hxd8kJabCBX56o02MqwlYVVUAx9ENa719YTnn5mg40+w60
+  publicKey: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAioMzJoUnSay7rc6/grk5mGNOt6Ymz2UMHBoZmqjfMVy/V5iDgitEY9hp+nupn7rJvAXJp4liE69tV+30IqhX1D7+Y3byQ4tc/ocT6H7TE/LPEfgGNRQHJ6r9oVG0YlaVUZC2uJ8y8ADd7CMgvf/+newOK+GmdBIgTmpXAO88Ijt6bi1D9ucZA2/El03jGV94mF/VIxU0K//u/zy9w2S8R/knU5zzZlHHr4XOO9CHu/P+aYbyzB3paPEPKudxtP/SW0IFyULLftSj4Hw3IykSSZa0+u5Dqp7Iiwjexl3OBwr+UMwkhKTMppMakhlgGScFq03MBx8N6d9ljZL1uOSYyQIDAQAB
+  notifyUrl: http://47.93.120.149:8800/notify
+  returnUrl: http://47.93.120.149:8800/return
